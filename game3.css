@@ -5,7 +5,7 @@
     overflow-y:hidden;
 }
 
-#gamepage2{
+#gamepage3{
     position:absolute;
     top:0;
     left:0;
@@ -14,7 +14,7 @@
     /*background-color:black;*/
 }
 
-#gamebase2{
+#gamebase3{
     position:relative;
     top:0;
     /*left:35vw;
@@ -27,12 +27,12 @@
 }
 
 @media screen and (orientation: portrait) {
-    #gamebase2{
+    #gamebase3{
         background-color:black;
     }
 }
 @media screen and (orientation: landscape) {
-    #gamebase2{
+    #gamebase3{
         background-color:red;
     }
 }
