@@ -1,3 +1,30 @@
+var fullscreen = {
+    request: function (elem) {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        }
+    },
+    exit: function () {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        }
+    }
+};
+fullscreen.request(this.parentNode);
+window.screen.orientation.lock("landscape-primary");
+
 $(document).ready(function () {
     var gamebase = $("#gamebase3");
     var block = {
@@ -39,9 +66,9 @@ $(document).ready(function () {
         
     }
 
-    (function () {
+    /*(function () {
         window.screen.orientation.lock("portrait");
-    })();
+    })();*/
     
     /*(function () {
         $("#startbase").stop().animate({ top: -$("#startbase").height() }, 5000, 'linear', function () { console.log(this.style.top); $(this).remove(); });
