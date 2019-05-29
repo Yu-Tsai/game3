@@ -8,6 +8,7 @@ console.log(current_mode.type)
 
 // angle
 console.log(current_mode.angle)
+alert("111");
 
 screen.orientation.lock("portrait")
 	.then(function () {
