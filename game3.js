@@ -40,7 +40,7 @@ $(document).ready(function () {
     }
 
     (function () {
-        screen.orientation.lock("portrait");
+        window.screen.orientation.lock("portrait");
     })();
     
     /*(function () {
