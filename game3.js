@@ -1,29 +1,26 @@
-var fullscreen = {
-    request: function (elem) {
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-            elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        }
-    },
-    exit: function () {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        }
-    }
-};
-fullscreen.request(this.parentNode);
-window.screen.orientation.lock("landscape-primary");
+if (document.querySelector("#gamepage3").requestFullscreen) document.querySelector("#gamepage3").requestFullscreen();
+else if (document.querySelector("#gamepage3").webkitRequestFullScreen) document.querySelector("#gamepage3").webkitRequestFullScreen();
+
+var current_mode = screen.orientation;
+
+// type
+console.log(current_mode.type)
+
+// angle
+console.log(current_mode.angle)
+
+screen.orientation.lock("portrait")
+	.then(function () {
+	    alert('Locked');
+	})
+	.catch(function (error) {
+	    alert(error);
+	});
+
+screen.orientation.addEventListener('change', function () {
+    console.log('Current orientation is ' + screen.orientation.type);
+});
+           
 
 $(document).ready(function () {
     var gamebase = $("#gamebase3");
