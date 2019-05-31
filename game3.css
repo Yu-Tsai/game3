@@ -36,7 +36,7 @@
     background-color:white;
 }
 
-@media screen and (orientation: portrait) {
+/*@media screen and (orientation: portrait) {*/
     #moveobj{
         position:absolute;
         top:10vh;
@@ -53,8 +53,8 @@
         height:80vh;
         background-color:white;
     }
-}
-@media screen and (orientation: landscape) {
+/*}*/
+/*@media screen and (orientation: landscape) {
     #moveobj{
         position:absolute;
         top:45vh;
@@ -70,4 +70,4 @@
         height:45vh;
         background-color:white;
     }
-}
+}*/
