@@ -60,7 +60,8 @@ $(document).ready(function () {
             newBlockt.stop().animate({ left: -newBlockt.width() }, 4000, 'linear', function () { $(this).remove(); });
         }
     }
-
+    
+    $(document).on("pagecreate",function(event){
     $(window).on("orientationchange", function (event) {
         alert(event.orientation);
         $(".block").stop(true,false);
@@ -113,6 +114,7 @@ $(document).ready(function () {
             })
             $("#startbase").stop().animate({ top: -$("#startbase").width() + $("#startbase").position().top }, 3000, 'linear', function () { $(this).remove(); });
         }
+    });
     });
 
     (function () {
