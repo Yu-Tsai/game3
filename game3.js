@@ -62,6 +62,7 @@ $(document).ready(function () {
     }
 
     $(window).on("orientationchange", function (event) {
+        alert("111");
         $(".block").stop(true,false);
         if ($(window).height() >= $(window).width()) {
             $.each($(".blockb"), function () {
