@@ -18,10 +18,8 @@ $(document).ready(function () {
             newBlockb.addClass("blockb");
             newBlockb.css({
                 "position": "absolute",
-                "left": 0,
-                "top": gamebase.height(),
-                "height": $("#moveobj").width(),
-                "width": Math.floor(Math.random() * gamebase.width() * 0.8)
+                "left": -Math.floor(Math.random() * gamebase.width() * 0.8) - $("#moveobj").width() * 2,
+                "top": gamebase.height()
             });
             gamebase.append(newBlockb);
 
@@ -30,15 +28,13 @@ $(document).ready(function () {
             newBlockt.addClass("blockt");
             newBlockt.css({
                 "position": "absolute",
-                "left": newBlockb.width() + $("#moveobj").width() * 2,
-                "top": gamebase.height(),
-                "height": $("#moveobj").width(),
-                "width": gamebase.width()
+                "left": gamebase.width() + newBlockb.position().left + $("#moveobj").width() * 2,
+                "top": gamebase.height()
             })
             gamebase.append(newBlockt);
 
-            newBlockb.stop().animate({ top: -newBlockb.height() }, 4000, 'linear', function () { /*console.log(this.style.top);*/ $(this).remove(); });
-            newBlockt.stop().animate({ top: -newBlockt.height() }, 4000, 'linear', function () { /*console.log(this.style.top);*/ $(this).remove(); });
+            newBlockb.stop().animate({ top: -newBlockb.height() }, 4000, 'linear', function () { $(this).remove(); });
+            newBlockt.stop().animate({ top: -newBlockt.height() }, 4000, 'linear', function () { $(this).remove(); });
         } else {
             var newBlockt = $("<div>");
             newBlockt.addClass("block");
@@ -46,9 +42,7 @@ $(document).ready(function () {
             newBlockt.css({
                 "position": "absolute",
                 "left": gamebase.width(),
-                "top": 0,
-                "height": Math.floor(Math.random() * gamebase.height() * 0.8),
-                "width": $("#moveobj").width()
+                "top": -Math.floor(Math.random() * gamebase.height() * 0.8) - $("#moveobj").width() * 2
             })
             gamebase.append(newBlockt);
 
@@ -58,37 +52,75 @@ $(document).ready(function () {
             newBlockb.css({
                 "position": "absolute",
                 "left": gamebase.width(),
-                "top": newBlockt.height() + $("#moveobj").height() * 2,
-                "height": gamebase.height(),
-                "width": $("#moveobj").width()
+                "top": newBlockt.height() + newBlockt.position().top + $("#moveobj").height() * 2
             });
             gamebase.append(newBlockb);
 
-            newBlockb.stop().animate({ left: -newBlockb.width() }, 4000, 'linear', function () { /*console.log(this.style.top);*/ $(this).remove(); });
-            newBlockt.stop().animate({ left: -newBlockt.width() }, 4000, 'linear', function () { /*console.log(this.style.top);*/ $(this).remove(); });
+            newBlockb.stop().animate({ left: -newBlockb.width() }, 4000, 'linear', function () { $(this).remove(); });
+            newBlockt.stop().animate({ left: -newBlockt.width() }, 4000, 'linear', function () { $(this).remove(); });
         }
     }
 
     $(window).on("orientationchange", function (event) {
-        $(".block").stop();
+        $(".block").stop(true,false);
         if ($(window).height() >= $(window).width()) {
-            $.each($(".blockb"),function(){                
-                var neww = $(this).height();
-                var newh = $(this).width();
+            $.each($(".blockb"), function () {
                 var newleft = $(this).position().top;
-                var newtop = gamebase.width() - $(this).width();
+                var newtop = -$(this).position().left;
                 $(this).css({
                     "top": newtop,
-                    "left": newleft,
-                    "width": neww,
-                    "height": newh
-                })                               
+                    "left": newleft
+                })
+                $(this).animate({ left: -gamebase.height() + $(this).position().left }, 4000, 'linear', function () { $(this).remove(); });
             })
+            $.each($(".blockt"), function () {
+                var newleft = $(this).position().top;
+                var newtop = -$(this).position().left;
+                $(this).css({
+                    "top": newtop,
+                    "left": newleft
+                })
+                $(this).animate({ left: -gamebase.height() + $(this).position().left }, 4000, 'linear', function () { $(this).remove(); });
+            })            
+            $("#startbase").css({
+                "left":$("#startbase").position().top,
+                "top": ""
+            })
+            $("#startbase").stop().animate({ left: -$("#startbase").height() + $("#startbase").position().left }, 3000, 'linear', function () { $(this).remove(); });
+        } else {
+            $.each($(".blockb"), function () {
+                var newleft = -$(this).position().top;
+                var newtop = $(this).position().left;
+                $(this).css({
+                    "top": newtop,
+                    "left": newleft
+                })
+                $(this).animate({ top: -gamebase.width() + $(this).position().top }, 4000, 'linear', function () { $(this).remove(); });
+            })
+            $.each($(".blockt"), function () {
+                var newleft = -$(this).position().top;
+                var newtop = $(this).position().left;
+                $(this).css({
+                    "top": newtop,
+                    "left": newleft
+                })
+                $(this).animate({ top: -gamebase.width() + $(this).position().top }, 4000, 'linear', function () { $(this).remove(); });
+            })
+            $("#startbase").css({
+                "top": $("#startbase").position().left,
+                "left": ""
+            })
+            $("#startbase").stop().animate({ top: -$("#startbase").width() + $("#startbase").position().top }, 3000, 'linear', function () { $(this).remove(); });
         }
     });
 
     (function () {
-        $("#startbase").stop().animate({ top: -$("#startbase").height() }, 3000, 'linear', function () { $(this).remove(); });
+        if ($(window).height() >= $(window).width()) {
+            $("#startbase").stop().animate({ top: -$("#startbase").height() }, 3000, 'linear', function () { $(this).remove(); });
+        } else {
+            $("#startbase").stop().animate({ left: -$("#startbase").width() }, 3000, 'linear', function () { $(this).remove(); });
+        }
+        
         setInterval(function () { makeblock(); }, 3000);
     })();
 });

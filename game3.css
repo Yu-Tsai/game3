@@ -1,8 +1,7 @@
 *{
     margin:0;
     padding:0;    
-    overflow-x:hidden;
-    overflow-y:hidden;
+    overflow: hidden;
 }
 
 #gamepage3{
@@ -53,6 +52,10 @@
         height:80vh;
         background-color:white;
     }
+    .block{
+        width:100vw;
+        height:5vw;
+    }
 }
 @media screen and (orientation: landscape) {
     #moveobj{
@@ -69,5 +72,9 @@
         width:80vw;
         height:45vh;
         background-color:white;
+    }
+    .block{
+        width:5vh;
+        height:100vh;
     }
 }
