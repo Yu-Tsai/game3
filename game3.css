@@ -38,8 +38,8 @@
 @media screen and (orientation: portrait) {
     #moveobj{
         position:absolute;
-        top:10vh;
-        left:45vw;
+        /*top:10vh;
+        left:45vw;*/
         width:10vw;
         height:10vw;
         transform:rotate(90deg);
@@ -60,8 +60,8 @@
 @media screen and (orientation: landscape) {
     #moveobj{
         position:absolute;
-        top:45vh;
-        left:10vw;
+        /*top:45vh;
+        left:10vw;*/
         width:10vh;
         height:10vh;
     }
